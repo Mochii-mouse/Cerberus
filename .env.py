@@ -1,1 +1,0 @@
-discord_token=ODQyMTU0MTU5NDU2Mzg3MDky.YJxLLg.W7SqhdVu-cinMgmfQNDyyZGCZwk

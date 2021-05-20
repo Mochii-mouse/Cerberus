@@ -101,11 +101,14 @@ async def change_status():
     await client.change_presence(activity=discord.Game(next(status)))
 
 env = {}
-with open('.env') as f:
-    for line in f.splitlines():
-      for key,value in line.split('='):
+with open('./.env') as f:
+    for line in f.read().splitlines():
+        values = line.split('=')
+        key = values[0]
+        value = "=".join(values[1:])
         env[key] = value
 
+print(env)
 token = env['discord_token']
 
-client.run('token')
+client.run(token)
