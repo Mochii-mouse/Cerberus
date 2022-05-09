@@ -5,16 +5,28 @@ import random
 import os
 from discord.ext import commands, tasks
 from itertools import cycle
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--mode', default='development',
+                    choices=['development', 'production'])
+
+args = parser.parse_args()
+mode = args.mode
 
 
-def get_prefix(client, message):
-    with open('prefixes.json', 'r') as f:
-        prefixes = json.load(f)
+# def get_prefix(client, message):
+#    with open('prefixes.json', 'r') as f:
+#        prefixes = json.load(f)
+#
+#    return prefixes[str(message.guild.id)]
 
-    return prefixes[str(message.guild.id)]
 
-
-client = commands.Bot(command_prefix=get_prefix)
+if mode == 'production':
+    prefix = '!'
+else:
+    prefix = '#'
+client = commands.Bot(command_prefix=prefix)
 status = cycle(['Your mum', 'with C-3PO', 'OwO'])
 
 
@@ -30,15 +42,15 @@ async def on_ready():
     print('Bot is ready')
 
 
-@client.event
-async def on_guild_join(guild):
-    with open('prefixes.json', 'r') as f:
-        prefixes = json.load(f)
-
-    prefixes[str(guild.id)] = '!'
-
-    with open('prefixes.json', 'w') as f:
-        json.dump(prefixes, f)
+# @client.event
+# async def on_guild_join(guild):
+#    with open('prefixes.json', 'r') as f:
+#        prefixes = json.load(f)
+#
+#    prefixes[str(guild.id)] = '!'
+#
+#    with open('prefixes.json', 'w') as f:
+#        json.dump(prefixes, f)
 
 
 @tasks.loop(seconds=60)
