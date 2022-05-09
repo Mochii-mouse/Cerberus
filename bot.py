@@ -1,12 +1,21 @@
 from distutils import extension
 import discord
+import json
 import random
 import os
 from discord.ext import commands, tasks
 from itertools import cycle
 
-client = commands.Bot(command_prefix='!')
-status = cycle(['Status 1', 'Status 2', 'Status 3'])
+
+def get_prefix(client, message):
+    with open('prefixes.json', 'r') as f:
+        prefixes = json.load(f)
+
+    return prefixes[str(message.guild.id)]
+
+
+client = commands.Bot(command_prefix=get_prefix)
+status = cycle(['Your mum', 'with C-3PO', 'OwO'])
 
 
 @client.event
@@ -21,7 +30,18 @@ async def on_ready():
     print('Bot is ready')
 
 
-@tasks.loop(seconds=10)
+@client.event
+async def on_guild_join(guild):
+    with open('prefixes.json', 'r') as f:
+        prefixes = json.load(f)
+
+    prefixes[str(guild.id)] = '!'
+
+    with open('prefixes.json', 'w') as f:
+        json.dump(prefixes, f)
+
+
+@tasks.loop(seconds=60)
 async def change_status():
     await client.change_presence(activity=discord.Game(next(status)))
 
