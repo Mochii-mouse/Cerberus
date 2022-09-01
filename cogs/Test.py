@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import datetime
 
 
 class test(commands.Cog):
@@ -8,9 +9,9 @@ class test(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def join_date(self, member: discord.Member):
-        difference = member.joined_at - datetime.now
-        print(difference.days)
+    async def join_date(self, ctx, member: discord.Member):
+        difference = datetime.datetime.now() - member.joined_at
+        await ctx.send(difference.days)
 
 
 def setup(client):
