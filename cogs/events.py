@@ -14,6 +14,13 @@ class events(commands.Cog):
         if 'Clark' in message.content:
             await message.channel.send('Clark is a cutie pie!')
 
+    # @commands.Cog.listener()
+    # async def on_message(self, message):
+    #    if message.author.bot:
+    #        return
+    #    if '' in message.content:
+    #        await message.channel.send('Clark is a cutie pie!')
+
 
 def setup(client):
     client.add_cog(events(client))
