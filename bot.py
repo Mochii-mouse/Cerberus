@@ -26,7 +26,7 @@ if mode == 'production':
     prefix = '!'
 else:
     prefix = '#'
-client = commands.Bot(command_prefix=prefix, intents=discord.Intents())
+client = commands.Bot(command_prefix=prefix, intents=discord.Intents.all())
 status = cycle(['Your mum', 'with C-3PO', 'OwO'])
 
 
