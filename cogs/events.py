@@ -14,12 +14,16 @@ class events(commands.Cog):
         if 'Clark' in message.content:
             await message.channel.send('Clark is a cutie pie!')
 
-    # @commands.Cog.listener()
-    # async def on_message(self, message):
-    #    if message.author.bot:
-    #        return
-    #    if '' in message.content:
-    #        await message.channel.send('Clark is a cutie pie!')
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if (datetime.datetime.now() - message.author.joined_at).days < 1:
+            if 'nudes' in message.content.lower() or 'please ban' in message.content.lower():
+                await message.author.ban()
+                await message.channel.send(f'{message.author} has been banned')
+            else:
+                pass
+        else:
+            pass
 
 
 def setup(client):
