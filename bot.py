@@ -40,6 +40,9 @@ async def on_command_error(ctx, error):
 async def on_ready():
     change_status.start()
     print('Bot is ready')
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            await client.load_extension(f'cogs.{filename[:-3]}')
 
 
 # @client.event
