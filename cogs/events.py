@@ -27,5 +27,5 @@ class events(commands.Cog):
             pass
 
 
-def setup(client):
-    client.add_cog(events(client))
+async def setup(client):
+    await client.add_cog(events(client))
