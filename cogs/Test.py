@@ -15,7 +15,15 @@ class test(commands.Cog):
         await ctx.send(f'{difference.days} days ago')
 
     @commands.Cog.listener()
-    async def spam_bot(self, message):
+    async def on_message(self, message):
+        if (datetime.datetime.now() - message.author.joined_at).days < 1:
+            if 'nudes' in message.content.lower() or 'please ban' in message.content.lower():
+                await message.author.ban()
+                await message.channel.send(f'{message.author} has been banned')
+            else:
+                pass
+        else:
+            pass
 
 
 def setup(client):
