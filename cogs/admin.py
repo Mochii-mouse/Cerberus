@@ -44,5 +44,5 @@ class admin(commands.Cog):
         await ctx.channel.purge(limit=amount)
 
 
-def setup(client):
-    client.add_cog(admin(client))
+async def setup(client):
+    await client.add_cog(admin(client))
