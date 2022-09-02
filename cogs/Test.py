@@ -15,5 +15,5 @@ class test(commands.Cog):
         await ctx.send(f'{difference.days} days ago')
 
 
-def setup(client):
-    client.add_cog(test(client))
+async def setup(client):
+    await client.add_cog(test(client))
