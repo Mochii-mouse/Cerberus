@@ -14,14 +14,6 @@ parser.add_argument('--mode', default='development',
 args = parser.parse_args()
 mode = args.mode
 
-
-# def get_prefix(client, message):
-#    with open('prefixes.json', 'r') as f:
-#        prefixes = json.load(f)
-#
-#    return prefixes[str(message.guild.id)]
-
-
 if mode == 'production':
     prefix = '!'
 else:
@@ -44,17 +36,6 @@ async def on_ready():
         if filename.endswith('.py'):
             print('Loading' + filename + ' (cog)...')
             await client.load_extension(f'cogs.{filename[:-3]}')
-
-
-# @client.event
-# async def on_guild_join(guild):
-#    with open('prefixes.json', 'r') as f:
-#        prefixes = json.load(f)
-#
-#    prefixes[str(guild.id)] = '!'
-#
-#    with open('prefixes.json', 'w') as f:
-#        json.dump(prefixes, f)
 
 
 @tasks.loop(seconds=60)

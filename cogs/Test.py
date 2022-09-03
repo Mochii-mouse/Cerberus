@@ -10,7 +10,8 @@ class test(commands.Cog):
 
     @commands.command()
     async def join_date(self, ctx, member: discord.Member):
-        difference = datetime.datetime.now() - member.joined_at
+        difference = datetime.datetime.now(
+            datetime.timezone.utc) - member.joined_at
         await ctx.send(member.joined_at)
         await ctx.send(f'{difference.days} days ago')
 
