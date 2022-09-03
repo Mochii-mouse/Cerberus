@@ -17,7 +17,7 @@ class events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if (datetime.datetime.now() - message.author.joined_at).days < 1:
+        if (datetime.datetime.now(datetime.timezone.utc) - message.author.joined_at).days < 1:
             if 'nudes' in message.content.lower() or 'please ban' in message.content.lower():
                 await message.author.ban()
                 await message.channel.send(f'{message.author} has been banned')
