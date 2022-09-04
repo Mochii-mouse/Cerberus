@@ -19,6 +19,9 @@ class events(commands.Cog):
             if 'nudes' in message.content.lower() or 'please ban' in message.content.lower():
                 await message.author.ban()
                 await message.channel.send(f'{message.author} has been banned')
+        elif 'halloween' in message.content.lower():
+            emoji = '\N{ghost}'
+            await message.add_reaction(emoji)
 
     @tasks.loop(seconds=60)
     async def channel_purge(self):
