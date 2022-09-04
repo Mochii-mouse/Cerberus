@@ -101,7 +101,8 @@ async def _8ball(ctx, *, question):
 
 @client.command(aliases=['pee'])
 async def Pee(ctx, member: discord.Member):
-    await ctx.send(f'Cerberus pee\'s on {member}')
+    await ctx.send(f'Cerberus pees on {member.mention}')
+    await ctx.message.delete()
 
 
 client.run('ODQyMTU0MTU5NDU2Mzg3MDky.YJxLLg.J-6r_NTXrxf_f8wkSFmoQdTxu7U')

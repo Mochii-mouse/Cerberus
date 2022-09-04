@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import datetime
 
 
@@ -7,6 +7,7 @@ class events(commands.Cog):
 
     def __init__(self, client):
         self.client = client
+        self.channel_purge.start()
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -18,6 +19,13 @@ class events(commands.Cog):
             if 'nudes' in message.content.lower() or 'please ban' in message.content.lower():
                 await message.author.ban()
                 await message.channel.send(f'{message.author} has been banned')
+
+    @tasks.loop(seconds=60)
+    async def channel_purge(self):
+        channel = self.client.get_channel(1015991023693991957)
+        async for message in channel.history():
+            if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).days > 1:
+                await message.delete()
 
 
 async def setup(client):
