@@ -27,7 +27,7 @@ class events(commands.Cog):
     async def channel_purge(self):
         channel = self.client.get_channel(1015991023693991957)
         async for message in channel.history():
-            if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).days > 1:
+            if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).days > 0:
                 await message.delete()
 
 
