@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands, tasks
 import datetime
+import random
+import asyncio
 
 
 class events(commands.Cog):
@@ -8,6 +10,7 @@ class events(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.channel_purge.start()
+        self.monster_hunt.start()
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -29,6 +32,23 @@ class events(commands.Cog):
         async for message in channel.history():
             if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).days > 0:
                 await message.delete()
+
+    @tasks.loop(minutes=1)
+    async def monster_hunt(self):
+        channel = self.client.get_channel(1021369583560572948)
+        Message = await channel.fetch_message(channel.last_message_id)
+        Monsters = ['Witch', 'Ghost', 'Zombie', 'Black cat']
+        if (datetime.datetime.now(datetime.timezone.utc) - Message.created_at).total_seconds() < (60*10):
+            if Message.author.bot:
+                return
+            elif (random.randint(1, 10)) == 8:
+                await channel.send(f'A {random.choice(Monsters)} has appeared!')
+
+                def check(m):
+                    return m.content == 'Catch' and m.channel == channel
+
+                await self.client.wait_for('message', timeout=10.0, check=check)
+                await channel.send(f'Caught!')
 
 
 async def setup(client):
