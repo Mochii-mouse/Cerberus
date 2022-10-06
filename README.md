@@ -8,6 +8,7 @@ Functions:
     shows the join date of members with the join_date command.
  - General:
     shows bot latency with ping command,
+    clears all messages in a specified channel after 24 hours,
     loads and unloads cogs.
  - Fun:
      Pee command makes the bot respond with 'Cerbeus pees on {member}',
