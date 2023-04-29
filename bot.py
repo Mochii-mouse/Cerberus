@@ -6,7 +6,10 @@ import os
 from discord.ext import commands, tasks
 from itertools import cycle
 import argparse
+from dotenv import load_dotenv
+load_dotenv()
 
+token = os.getenv('token')
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default='development',
                     choices=['development', 'production'])
@@ -105,4 +108,4 @@ async def Pee(ctx, member: discord.Member):
     await ctx.message.delete()
 
 
-client.run('ODQyMTU0MTU5NDU2Mzg3MDky.YJxLLg.J-6r_NTXrxf_f8wkSFmoQdTxu7U')
+client.run(token)
