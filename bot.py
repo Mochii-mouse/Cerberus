@@ -18,9 +18,9 @@ args = parser.parse_args()
 mode = args.mode
 
 if mode == 'production':
-    prefix = '!'
+    prefix = '.'
 else:
-    prefix = '#'
+    prefix = '!'
 client = commands.Bot(command_prefix=prefix, intents=discord.Intents.all())
 status = cycle(['Your mum', 'with C-3PO', 'OwO'])
 

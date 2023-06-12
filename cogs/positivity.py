@@ -10,7 +10,7 @@ class positivity(commands.Cog):
     @commands.command()
     @commands.dm_only()
     async def confess(self, ctx, *, message):
-        channel = self.client.get_channel(1117497926541922345)
+        channel = self.client.get_channel(1117925509045690388)
         sender = ctx.author
         confession = await channel.send(f'"{message}" sent by ||{sender}||')
         await confession.add_reaction('✅')
@@ -21,10 +21,12 @@ class positivity(commands.Cog):
         channel = self.client.get_channel(payload.channel_id)
         message = await channel.fetch_message(payload.message_id)
         user = self.client.get_user(payload.user_id)
-        if payload.channel_id == 1117497926541922345:
+        if payload.channel_id == 1117925509045690388:
             if str(payload.emoji) == '✅' and not user.bot:
-                channel = self.client.get_channel(1117497819989819413)
-                await channel.send(message.content.split(' sent by')[0].strip('"'))
+                channel = self.client.get_channel(1035026935773925406)
+                dec1 = '✧༺♥༻∞　　∞༺♥༻✧\n'
+                dec2 = '\n.・。.・゜✭・.・✫・゜・。.'
+                await channel.send(dec1 + message.content.split(' sent by')[0].strip('"') + dec2)
                 await message.delete()
             elif str(payload.emoji) == '❌' and not user.bot:
                 print("Don't send")
