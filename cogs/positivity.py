@@ -9,7 +9,7 @@ class positivity(commands.Cog):
 
     @commands.command()
     @commands.dm_only()
-    async def confess(self, ctx, *, message):
+    async def compliment(self, ctx, *, message):
         channel = self.client.get_channel(1117925509045690388)
         sender = ctx.author
         confession = await channel.send(f'"{message}" sent by ||{sender}||')
