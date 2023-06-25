@@ -32,6 +32,13 @@ class positivity(commands.Cog):
                 print("Don't send")
                 await message.delete()
 
+    @commands.command()
+    @commands.dm_only()
+    async def grievance(self, ctx, *, message):
+        channel = self.client.get_channel(1117925509045690388)
+        sender = ctx.author
+        grievance = await channel.send(f'### Grievance \n "{message}"\n from ||{sender}||')
+
 
 async def setup(client):
     await client.add_cog(positivity(client))
